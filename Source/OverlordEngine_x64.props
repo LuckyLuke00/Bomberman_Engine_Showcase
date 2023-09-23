@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir>$(SolutionDir)_build\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)_intermediate\$(Configuration)\</IntDir>
+    <IncludePath>$(SolutionDir)..\Libraries\PhysX\include;$(SolutionDir)..\Libraries\FX11\include;$(SolutionDir)..\Libraries\FMOD\include;$(SolutionDir)..\Libraries\DirectXTex\include;$(SolutionDir)..\Libraries\vld\include;$(SolutionDir)..\Libraries\imgui\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\Libraries\vld\lib\$(Configuration);$(SolutionDir)..\Libraries\DirectXTex\lib\$(Configuration);$(SolutionDir)..\Libraries\FMOD\lib\$(Configuration);$(SolutionDir)..\Libraries\FX11\lib\$(Configuration);$(SolutionDir)..\Libraries\PhysX\lib\$(Configuration);$(SolutionDir)..\Libraries\imgui\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)..\Libraries\PhysX\bin\$(Configuration)\*" "$(OutDir)" /y /D 
+xcopy "$(SolutionDir)..\Libraries\FMOD\bin\$(Configuration)\*" "$(OutDir)" /y /D 
+xcopy "$(SolutionDir)..\Libraries\vld\bin\$(Configuration)\*" "$(OutDir)" /y /D
+xcopy "$(ProjectDir)Resources\*" "$(OutDir)\Resources\*" /y /D /s </Command>
+    </PostBuildEvent>
+    <ClCompile>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+    </ClCompile>
+    <ClCompile>
+      <ExternalTemplatesDiagnostics>false</ExternalTemplatesDiagnostics>
+    </ClCompile>
+    <ClCompile>
+      <DisableAnalyzeExternal>true</DisableAnalyzeExternal>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>
